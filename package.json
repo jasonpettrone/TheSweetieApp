@@ -1,0 +1,39 @@
+{
+    "name": "ai-development-team",
+    "version": "1.0.0",
+    "description": "A multi-agent AI development team using Gemini API",
+    "main": "src/cli/index.js",
+    "type": "module",
+    "scripts": {
+        "start": "node src/cli/index.js start",
+        "manualDay": "node src/cli/index.js manual-day",
+        "status": "node src/cli/index.js status",
+        "audit": "node src/cli/index.js audit",
+        "audit:violations": "node src/cli/index.js audit --violations",
+        "docker": "docker-compose up --build",
+        "docker:status": "docker-compose run --rm ai-status",
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+        "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch"
+    },
+    "keywords": [
+        "ai",
+        "agents",
+        "gemini",
+        "multi-agent",
+        "development-team"
+    ],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "@google/generative-ai": "^0.21.0",
+        "better-sqlite3": "^12.6.2",
+        "chalk": "^5.3.0",
+        "commander": "^12.1.0",
+        "dotenv": "^16.4.5",
+        "node-cron": "^3.0.3",
+        "simple-git": "^3.27.0"
+    },
+    "devDependencies": {
+        "jest": "^30.2.0"
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "backlog": [],
+    "inProgress": [],
+    "inReview": [],
+    "done": [
+        {
+            "id": "task-init-1",
+            "description": "Set up React frontend with Vite",
+            "status": "done",
+            "completedAt": "2026-01-14T15:00:00.000Z"
+        },
+        {
+            "id": "task-init-2",
+            "description": "Create Express backend with API structure",
+            "status": "done",
+            "completedAt": "2026-01-14T15:00:00.000Z"
+        },
+        {
+            "id": "task-init-3",
+            "description": "Build Jobs page with search functionality",
+            "status": "done",
+            "completedAt": "2026-01-14T15:00:00.000Z"
+        },
+        {
+            "id": "task-init-4",
+            "description": "Build Recipes page with allergen filtering",
+            "status": "done",
+            "completedAt": "2026-01-14T15:00:00.000Z"
+        }
+    ],
+    "stories": [],
+    "lastUpdated": "2026-01-14T15:00:00.000Z"
+}

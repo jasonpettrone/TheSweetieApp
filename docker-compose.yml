@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  ai-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-software-team
+    
+    # Resource limits - lightweight for small website work
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    
+    # Environment variables (API keys passed from host)
+    environment:
+      - GEMINI_API_KEY_1=${GEMINI_API_KEY_1}
+      - GEMINI_API_KEY_2=${GEMINI_API_KEY_2}
+      - GEMINI_API_KEY_3=${GEMINI_API_KEY_3}
+      - GEMINI_API_KEY_4=${GEMINI_API_KEY_4}
+      - GEMINI_API_KEY_5=${GEMINI_API_KEY_5}
+      - GEMINI_API_KEY_6=${GEMINI_API_KEY_6}
+      - GEMINI_API_KEY_7=${GEMINI_API_KEY_7}
+      - GEMINI_API_KEY_8=${GEMINI_API_KEY_8}
+      - GEMINI_API_KEY_9=${GEMINI_API_KEY_9}
+      - GEMINI_API_KEY_10=${GEMINI_API_KEY_10}
+      - NODE_ENV=production
+      - DOCKER_CONTAINER=true
+    
+    # Volume mounts - ONLY these directories are accessible
+    volumes:
+      # Website code - read/write for agents to develop
+      - ./website:/app/website:rw
+      # Data directory - read/write for logs, state, knowledge base
+      - ./data:/app/data:rw
+      # CEO tasks - read only, agents cannot modify
+      - ./ceo-tasks.md:/app/ceo-tasks.md:ro
+      # Tests - read only for running tests
+      - ./tests:/app/tests:ro
+    
+    # No network access to host machine
+    network_mode: bridge
+    
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+    
+    # Read-only root filesystem except for mounted volumes
+    read_only: true
+    tmpfs:
+      - /tmp:size=100M,mode=1777
+    
+    # Restart policy
+    restart: "no"
+
+  # Optional: Run just the status command
+  ai-status:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["status"]
+    profiles:
+      - tools
+    environment:
+      - DOCKER_CONTAINER=true
+    volumes:
+      - ./data:/app/data:ro
+    read_only: true
